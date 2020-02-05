@@ -1,4 +1,5 @@
-INSTALL_PATH?=/usr/
+#INSTALL_PATH?=/usr/
+INSTALL_PATH?=/home/mmouchet/Software/FreeCT/FreeCT_Reader/install/
 
 all: rebuild
 
@@ -11,10 +12,11 @@ rebuild:
 	rm -f libfct_read.a
 
 install:
-ifneq ($(USER),root)
+ifeq ($(USER),root)
 	@echo Please run with sudo
 else
 	mkdir -p $(INSTALL_PATH)include/fct
+	mkdir -p $(INSTALL_PATH)/lib/
 	mkdir -p $(INSTALL_PATH)include/fct/include/
 	cp build/libfct_read.a $(INSTALL_PATH)lib/
 	mv build/fct_read.h $(INSTALL_PATH)include/fct/
